@@ -1,0 +1,379 @@
+:root {
+  --bg-color: #f3f4f6;
+  --text-color: #1f2937;
+  --card-bg: #ffffff;
+  --border-color: #e5e7eb;
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode Variables */
+body.dark-mode {
+  --bg-color: #111827;
+  --text-color: #f3f4f6;
+  --card-bg: #1f2937;
+  --border-color: #374151;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.logo {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.nav-actions {
+  display: flex;
+  gap: 15px;
+}
+
+/* Buttons */
+.btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+}
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+.btn-icon {
+  background: transparent;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  padding: 0.5rem;
+}
+.btn-icon:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+.btn-danger {
+  background: #fee2e2;
+  color: #dc2626;
+  margin-top: 10px;
+}
+.btn-danger:hover {
+  background: #fecaca;
+}
+
+/* Layout */
+.container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  margin-top: 10vh;
+  display: none;
+}
+.empty-state.active {
+  display: block;
+}
+.empty-icon {
+  font-size: 4rem;
+  color: #9ca3af;
+  margin-bottom: 1rem;
+}
+
+/* Grid */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Widget Card */
+.widget-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.2s;
+  cursor: grab;
+}
+.widget-card:active {
+  cursor: grabbing;
+}
+.widget-card.dragging {
+  opacity: 0.5;
+  border: 2px dashed var(--primary-color);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+.card-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-actions {
+  opacity: 0;
+  transition: 0.2s;
+}
+.widget-card:hover .card-actions {
+  opacity: 1;
+}
+.edit-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9ca3af;
+}
+.edit-btn:hover {
+  color: var(--primary-color);
+}
+
+.card-body {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Widget Content Styles */
+.content-number {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-align: center;
+}
+.content-text {
+  white-space: pre-wrap;
+  font-size: 0.9rem;
+  color: var(--text-color);
+  opacity: 0.8;
+  overflow-y: auto;
+  align-self: flex-start;
+  width: 100%;
+  height: 100%;
+}
+.content-list ul {
+  list-style: none;
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
+}
+.content-list li {
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.content-list li::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  display: block;
+}
+
+/* Progress Bar Widget */
+.progress-container {
+  width: 100%;
+}
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+.progress-track {
+  background: var(--border-color);
+  height: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.progress-fill {
+  background: var(--primary-color);
+  height: 100%;
+  transition: width 0.5s ease;
+}
+
+/* Chart Widget (CSS only) */
+.chart-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  height: 120px;
+  gap: 5px;
+}
+.chart-bar {
+  background: var(--primary-color);
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  opacity: 0.8;
+  transition: height 0.3s;
+}
+.chart-bar:hover {
+  opacity: 1;
+}
+
+/* Modal & Drawer */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 200;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(2px);
+}
+.modal.active {
+  display: flex;
+}
+.modal-content {
+  background: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 12px;
+  width: 450px;
+  max-width: 90%;
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.widget-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.option-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.option-card:hover {
+  background: rgba(37, 99, 235, 0.1);
+  border-color: var(--primary-color);
+}
+.option-card i {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 200;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s;
+}
+.drawer-overlay.active {
+  visibility: visible;
+  opacity: 1;
+}
+.drawer {
+  position: fixed;
+  right: -400px;
+  top: 0;
+  bottom: 0;
+  width: 350px;
+  background: var(--card-bg);
+  padding: 2rem;
+  transition: 0.3s;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+}
+.drawer-overlay.active .drawer {
+  right: 0;
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--bg-color);
+  color: var(--text-color);
+  outline: none;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary-color);
+}
+.hidden {
+  display: none;
+}
+.full-width {
+  width: 100%;
+}
+.close-btn {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Widget Builder</title>
+    <!-- Icons Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-chart-simple"></i>
+            <span>DashBuilder</span>
+        </div>
+        <div class="nav-actions">
+            <button id="themeToggle" class="btn btn-icon" title="Toggle Theme">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+            <button id="addWidgetBtn" class="btn btn-primary">
+                <i class="fa-solid fa-plus"></i> Add Widget
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Empty State -->
+        <div id="emptyState" class="empty-state">
+            <div class="empty-icon">
+                <i class="fa-regular fa-folder-open"></i>
+            </div>
+            <h2>No widgets yet</h2>
+            <p>Click "Add Widget" to create your dashboard.</p>
+        </div>
+
+        <!-- Widget Grid -->
+        <div id="widgetGrid" class="grid-container">
+            <!-- Widgets will be injected here via JS -->
+        </div>
+    </main>
+
+    <!-- Add Widget Modal -->
+    <div id="addModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Widget</h3>
+                <button class="close-btn" onclick="closeModal('addModal')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="widget-options">
+                <div class="option-card" onclick="createWidget('number')">
+                    <i class="fa-solid fa-hashtag"></i>
+                    <div>
+                        <h4>Number Card</h4>
+                        <p>Display a key metric.</p>
+                    </div>
+                </div>
+                <div class="option-card" onclick="createWidget('text')">
+                    <i class="fa-solid fa-align-left"></i>
+                    <div>
+                        <h4>Text Note</h4>
+                        <p>Simple notes.</p>
+                    </div>
+                </div>
+                <div class="option-card" onclick="createWidget('list')">
+                    <i class="fa-solid fa-list-check"></i>
+                    <div>
+                        <h4>List Card</h4>
+                        <p>To-do list tasks.</p>
+                    </div>
+                </div>
+                <div class="option-card" onclick="createWidget('progress')">
+                    <i class="fa-solid fa-bars-progress"></i>
+                    <div>
+                        <h4>Progress Bar</h4>
+                        <p>Track completion.</p>
+                    </div>
+                </div>
+                <div class="option-card" onclick="createWidget('chart')">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <div>
+                        <h4>Simple Chart</h4>
+                        <p>Visual bar graph.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Settings Drawer (Side Panel) -->
+    <div id="editDrawer" class="drawer-overlay">
+        <div class="drawer">
+            <div class="drawer-header">
+                <h3>Edit Widget</h3>
+                <button class="close-btn" onclick="closeDrawer()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="drawer-body">
+                <input type="hidden" id="editWidgetId">
+                
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="editTitle" placeholder="Widget Title">
+                </div>
+
+                <div class="form-group">
+                    <label id="editContentLabel">Content</label>
+                    <!-- Inputs will toggle based on widget type via JS -->
+                    <input type="text" id="editContentInput" class="content-input">
+                    <textarea id="editContentTextarea" class="content-input hidden" rows="5"></textarea>
+                    <div id="chartMsg" class="chart-msg hidden">Chart data is randomized for this demo.</div>
+                </div>
+
+                <div class="drawer-actions">
+                    <button onclick="saveWidget()" class="btn btn-primary full-width">Save Changes</button>
+                    <button onclick="deleteWidget()" class="btn btn-danger full-width">
+                        <i class="fa-solid fa-trash"></i> Delete Widget
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Link -->
+    <script src="script.js"></script>
+</body>
+</html>
